@@ -52,3 +52,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Waf
+/build.status
+/.lock-waf*
