@@ -127,4 +127,11 @@ def build(buildCtx):
 		else:
 		    shutil.copy2(os.path.join(dirPath, file), libPath)
     shutil.copytree(os.path.join(srcPath, 'include'), os.path.join(buildCtx.path.abspath(), 'include'))
+    binPath = os.path.join(buildCtx.path.abspath(), 'bin')
+    os.mkdir(binPath)
+    configFile = os.path.join(srcPath, 'scripts', 'gtest-config')
+    if os.access(configFile, os.R_OK):
+	shutil.copy2(configFile, binPath)
+    else:
+	buildCtx.fatal('Google Test build failed: %s is missing' % configFile)
     status.setSuccess()
