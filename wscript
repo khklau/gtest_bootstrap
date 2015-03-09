@@ -20,6 +20,7 @@ def options(optCtx):
     optCtx.load('dep_resolver')
 
 def prepare(prepCtx):
+    prepCtx.options.dep_base_dir = prepCtx.srcnode.find_dir('..').abspath()
     prepCtx.load('dep_resolver')
     status = BuildStatus.init(prepCtx.path.abspath())
     if status.isSuccess():
